@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+	<title>
+	ЗАНЯТИЕ 1: TABLE
+	</title>
+	<meta http-equiv = "Content-Type" content = "text/html charset="utf-8">
+	<style>
+	div {position:absolute; width:50px; height:50px; backdround:#ccf}
+	</style>
+	<script type="text/javascript">
+    function showTable(n,m,str){
+	var index = 0;
+	document.write("<table>");
+	
+	for(var i=0;i<n;i++){
+	document.write("<tr>");
+	
+	for(var j=0;j<m;j++){
+	r = Math.floor(Math.random()*255);
+	g = Math.floor(Math.random()*255);
+	b = Math.floor(Math.random()*255);
+	document.write("<td style='background:rgb("+r+","+g+","+b+")'>");
+	index = Math.floor(Math.random()*str.length);
+	document.write(str.charAt(index));
+	document.write("</td>");
+		}
+		document.write("</tr>")
+	}
+	document.write("</table>");
+	}
+	showTable(10,10,"АБВГДEЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЭЮЯ")
+</script>
+<meta name="tndStatus" content="notShop">
+</head>
+<body>
+</body>
+</html>

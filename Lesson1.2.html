@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+	<title>
+	ЗАНЯТИЕ 1: CHESS
+	</title>
+	<meta http-equiv = "Content-Type" content = "text/html charset="utf-8">
+	<style type="text/css">
+				td {
+				border: 1px solid #000;
+				width: 40px;
+				height: 40px;
+				font-size: 12pt;
+				text-align: center;
+				vertical-align: middle;
+			}
+
+			td.active {
+				background-color: #ccc !important;
+			}
+			td.even {
+				background-color: #ff0000;
+			}
+			td.odd {
+				background-color: #0000ff;
+			}
+	</style>
+	<script type="text/javascript">
+		function Table(element) {
+			this.i = 0;
+			this.j = 0;
+			this.element = element;
+			var row = ['A', 'B', 'C', 'D'];
+
+			this.getActiveCellAddress = function() {
+				return row[this.j] + (this.i + 1);
+			}  
+
+			function activate(i, j) {
+				element.children[0].children[j].children[i].classList.add('active');
+			}
+
+			function deactivate(i, j) {
+				element.children[0].children[j].children[i].classList.remove('active');
+			}
+			var that = this;
+			element.onkeydown = function(event) {
+				deactivate(that.i, that.j);
+				console.log(that.getActiveCellAddress());
+				switch(event.keyCode) {
+					case 37:
+					// left
+					if(that.i === 0) that.i = 3;
+					else that.i--;
+					break;
+					case 38:
+					// top
+					if(that.j === 0) that.j = 3;
+					else that.j--; 
+					break;
+					case 39: 
+					// right
+					if(that.i == 3) that.i = 0;
+					else that.i++;
+					break;
+					case 40:
+					// bottom
+					if(that.j == 3) that.j = 0;
+					else that.j++;
+					break;
+				}
+				activate(that.i, that.j);
+			}
+
+			function evenOddCell(i, j, evenOdd) {
+				if(evenOdd == 'even') {
+					element.children[0].children[j].children[i].classList.add('even');
+				} else {
+					element.children[0].children[j].children[i].classList.add('odd');
+				}
+			}
+
+			this.color = function() {
+				for(var i = 3; i >= 0; i--) {
+					for(var j = 3; j >= 0; j--) {
+						evenOddCell(i, j, ((i + j) % 2 === 0 ? 'odd' : 'even'));
+					}
+				}
+			}
+		}		
+
+		window.onload = function() {
+			var table = new Table(document.getElementById('table'));
+
+			table.color();
+
+			var table1 = new Table(document.getElementById('table1'));
+
+			table1.color();
+		}
+		</script>
+<meta name="tndStatus" content="notShop">
+</head>
+<body>
+<table tabindex="0" id="table">
+			<tbody><tr>
+				<td class="odd">1</td>
+				<td class="even">2</td>
+				<td class="odd">3</td>
+				<td class="even">4</td>
+			</tr>
+			<tr>
+				<td class="even">5</td>
+				<td class="odd">6</td>
+				<td class="even">7</td>
+				<td class="odd">8</td>
+			</tr>
+			<tr>
+				<td class="odd">9</td>
+				<td class="even">10</td>
+				<td class="odd">11</td>
+				<td class="even">12</td>
+			</tr>
+			<tr>
+				<td class="even active">13</td>
+				<td class="odd">14</td>
+				<td class="even">15</td>
+				<td class="odd">16</td>
+			</tr>
+		</tbody></table>
+<table tabindex="1" id="table1">
+			<tbody><tr>
+				<td class="odd">1</td>
+				<td class="even">2</td>
+				<td class="odd">3</td>
+				<td class="even">4</td>
+			</tr>
+			<tr>
+				<td class="even">5</td>
+				<td class="odd">6</td>
+				<td class="even">7</td>
+				<td class="odd">8</td>
+			</tr>
+			<tr>
+				<td class="odd">9</td>
+				<td class="even">10</td>
+				<td class="odd">11</td>
+				<td class="even">12</td>
+			</tr>
+			<tr>
+				<td class="even active">13</td>
+				<td class="odd">14</td>
+				<td class="even">15</td>
+				<td class="odd">16</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
+
